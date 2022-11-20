@@ -1,0 +1,50 @@
+body {
+    background-color: aqua;
+}
+
+h2 {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+h3 {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+.formulario {
+    display: flexbox;
+    margin-left: 40%;
+    padding: 20px;
+}
+a {
+    text-decoration: none;
+}
+
+.tabla {
+    padding-top: 12px;
+    display: flexbox;
+    margin-left: 35%;
+    text-align: center;
+}
+
+button {
+    background: transparent;
+    border: 1px solid black;
+    border-radius: 6px;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+}
+
+.tabla {
+    width: 900px;
+}
+
+.tabla th,
+.tabla td {
+    border: 1px solid #000;
+
+}
