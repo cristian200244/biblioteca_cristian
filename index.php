@@ -45,6 +45,7 @@ $libro = mysqli_fetch_assoc($libros);
             <br><br>
             <button type="submit">Agregar</button>
         </form>
+    
         <style>
             .field:has(input:required) label:after {
                 content: "*";

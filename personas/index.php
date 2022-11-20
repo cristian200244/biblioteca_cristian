@@ -51,7 +51,7 @@ $roles = mysqli_query($con, $query) or die(mysqli_error($con));
             <br>
             <label for="biografia">biografia</label><br>
             <textarea name="biografia" id="biografia" cols="20" rows="5"></textarea>
-
+            LA
 
             <input type="submit" value="guarda">
         </form>
