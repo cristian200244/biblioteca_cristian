@@ -25,38 +25,46 @@ $roles = mysqli_query($con, $query) or die(mysqli_error($con));
     <div class="formulario">
         <button><a href="../index.php">Regresar</a></button>
         <form action="save.php" method="post">
-            <label for="primer_nombre">primer nombre</label><br>
-            <input type="text" name="primer_nombre" id="primer_nombre"><br>
+            <div class="field">
 
-            <label for="segundo_nombre">segundo nombre</label><br>
-            <input type="text" name="segundo_nombre" id="segundo_nombre"><br>
+                <label for="primer_nombre">primer nombre</label><br>
+                <input type="text" name="primer_nombre" id="primer_nombre" required><br>
 
-            <label for="primer_apellido">primer apellido</label><br>
-            <input type="text" name="primer_apellido" id="primer_apellido"><br>
+                <label for="segundo_nombre">segundo nombre</label><br>
+                <input type="text" name="segundo_nombre" id="segundo_nombre" required><br>
 
-            <label for="segundo_apellido">segundo apellido</label><br>
-            <input type="text" name="segundo_apellido" id="segundo_apellido"><br>
+                <label for="primer_apellido">primer apellido</label><br>
+                <input type="text" name="primer_apellido" id="primer_apellido" required><br>
 
-            <label for="email">correo electronico</label><br>
-            <input type="text" name="email" id="email"><br>
+                <label for="segundo_apellido">segundo apellido</label><br>
+                <input type="text" name="segundo_apellido" id="segundo_apellido"><br>
 
-            <label for="rol">Rol</label><br>
-            <select id="id_rol" name="id_rol" required>
-                <option selected>Seleccione una Opcion...</option>
-                <?php foreach ($roles as $rol) : ?>
-                    <option value="<?= $rol['id'] ?>"><?= $rol['nombre']  ?></option>";
-                <?php endforeach ?>
-                ?>
-            </select>
-            <br>
-            <label for="biografia">biografia</label><br>
-            <textarea name="biografia" id="biografia" cols="20" rows="5"></textarea>
-            LA
+                <label for="email">correo electronico</label><br>
+                <input type="text" name="email" id="email"><br>
 
-            <input type="submit" value="guarda">
+                <label for="rol">Rol</label><br>
+                <select id="id_rol" name="id_rol" required>
+                    <option selected>Seleccione una Opcion...</option>
+                    <?php foreach ($roles as $rol) : ?>
+                        <option value="<?= $rol['id'] ?>"><?= $rol['nombre']  ?></option>";
+                    <?php endforeach ?>
+                    ?>
+                </select>
+                <br>
+                <label for="biografia">Biografia</label><br>
+                <textarea name="biografia" id="biografia" cols="20" rows="5"></textarea>
+
+
+            </div>
+            <input type="submit" value="guardar">
         </form>
+        <style>
+            .field:has(input:required) label:after {
+                content: "*";
+                color: red;
+            }
+        </style>
     </div>
-
     <div class="tabla">
         <table>
             <tr>
