@@ -7,7 +7,7 @@ $primer_nombre      = $_POST['primer_nombre'];
 $segundo_nombre     = $_POST['segundo_nombre'];
 $primer_apellido    = $_POST['primer_apellido'];
 $segundo_apellido   = $_POST['segundo_apellido'];
-$biografia         =$_POST['biografia'];
+$biografia          = $_POST['biografia'];
 $email              = $_POST['email'];
 $id_rol             = $_POST['id_rol'];
 
