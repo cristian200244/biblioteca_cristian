@@ -1,10 +1,13 @@
 <?php
 include_once("conexion.php");
 
+$query = "SELECT id, CONCAT(IFNULL(primer_nombre,''),' ',IFNULL(segundo_nombre,''),' ',IFNULL(primer_apellido,''),' ',IFNULL(segundo_apellido,'')) AS autor FROM personas";
+$autores = mysqli_query($con, $query) or die(mysqli_error($con));
 
-$query  = "SELECT * FROM libros";
+$query  = "SELECT l.id, l.titulo, CONCAT(IFNULL(primer_nombre,''),' ',IFNULL(segundo_nombre,''),' ',IFNULL(primer_apellido,''),' ',IFNULL(segundo_apellido,'')) AS autor, l.disponible
+FROM libros AS l
+JOIN personas AS p ON l.id_autor = p.id";
 $libros = mysqli_query($con, $query);
-$libro = mysqli_fetch_assoc($libros);
 
 ?>
 <!DOCTYPE html>
@@ -21,7 +24,6 @@ $libro = mysqli_fetch_assoc($libros);
 
 <body>
     <h2>Bievenido a la Biblioteca Del Valle</h2>
-
     <div class="formulario">
         <button><a href="./personas">personas</a></button>
         <form action="libros/save.php" method="post"><br>
@@ -29,10 +31,15 @@ $libro = mysqli_fetch_assoc($libros);
 
                 <label for="">Titulo Del Libro </label><br>
                 <input type="text" name="titulo" id="titulo" required><br>
-                
-                <label for="id_autor">Autor Del Libro </label><br>
-                <input type="text" name="id_autor" id="id_autor" required><br>
-                
+                <label for="">Autor Del Libro</label><br>
+                <select id="id_autor" name="id_autor" required>
+                    <option selected>Seleccione una Opcion...</option>
+                    <?php foreach ($autores as $autor) : ?>
+                        <option value="<?= $autor['id'] ?>"><?= $autor['autor'] ?></option>;
+                    <?php endforeach ?>
+                    ?>
+                </select>
+                <br>
                 <label for="">Estado </label><br>
                 <select name="disponible" id="disponible">
                     <option value="1">Disponible</option>
@@ -43,9 +50,9 @@ $libro = mysqli_fetch_assoc($libros);
             <label for="">Subir Foto</label><br>
             <input type="file" name="imagen" id="imagen">
             <br><br>
-            <button type="submit">Agregar</button>
+            <button type="submit" onclick="validar()">Agregar</button>
         </form>
-    
+
         <style>
             .field:has(input:required) label:after {
                 content: "*";
@@ -72,11 +79,11 @@ $libro = mysqli_fetch_assoc($libros);
                     <tr>
                         <td><?php echo $pos; ?></td>
                         <td><?php echo $libro['titulo']; ?></td>
-                        <td><?php echo $libro['id_autor']; ?></td>
+                        <td><?php echo $libro['autor']; ?></td>
                         <td><?php echo $libro['disponible']  ? 'Disponible' : 'No Disponible'; ?></td>
 
                         <td><button><a href="libros/see.php?id=<?php echo $libro['id']; ?>">ver</a></button></td>
-                        <td><button><a href="libros/delete.php?id=<?php echo $libro['id']; ?>">Eliminar</a></button></td>
+                        <td><button><a href="libros/delete.php?id=<?php echo $libro['id']; ?>" onclick="clean()">Eliminar</a></button></td>
                         <td><button><a href="libros/editar.php?id=<?php echo $libro['id']; ?>">Editar</a></button></td>
 
                     </tr>
@@ -92,7 +99,8 @@ $libro = mysqli_fetch_assoc($libros);
     <?php } ?>
     </div>
 
-
+    <script src="save.js">
+    </script>
 </body>
 
 </html>

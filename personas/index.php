@@ -26,7 +26,7 @@ $roles = mysqli_query($con, $query) or die(mysqli_error($con));
         <button><a href="../index.php">Regresar</a></button>
         <form action="save.php" method="post">
             <div class="field">
-
+                
                 <label for="primer_nombre">primer nombre</label><br>
                 <input type="text" name="primer_nombre" id="primer_nombre" required><br>
 
@@ -85,8 +85,9 @@ $roles = mysqli_query($con, $query) or die(mysqli_error($con));
                         <td><?php echo $persona['nombre_completo']; ?></td>
                         <td><?php echo $persona['rol']; ?></td>
                         <td><?php echo $persona['estado'] ? 'ACTIVO' : 'INACTIVO'; ?></td>
-                        <td><a href="libros/editar.php?id=<?php echo $libro['id']; ?>">Editar</a></td>
-                        <td><a href="libros/eliminar.php?id=<?php echo $libro['id']; ?>" value="">Eliminar</a></td>
+
+                        <td><a href="../personas/editar.php?id=<?php echo $persona['id']; ?>">Editar</a></td>
+                        <td><a href="../personas/delete.php?id=<?php echo $persona['id']; ?>" value="" onclick="clean()">Eliminar</a></td>
                     </tr>
                 <?php $pos++;
                 }
@@ -98,6 +99,7 @@ $roles = mysqli_query($con, $query) or die(mysqli_error($con));
         </table>
 
     </div>
+    <script src="../save.js"></script>
 </body>
 
 </html>
