@@ -26,7 +26,7 @@ $libros = mysqli_query($con, $query);
     <h2>Bievenido a la Biblioteca Del Valle</h2>
     <div class="formulario">
         <button><a href="./personas">personas</a></button>
-        <form action="libros/save.php" method="post"><br>
+        <form action="libros/save.php" method="post" enctype="multipart/form-data"><br>
             <div class="field">
 
                 <label for="">Titulo Del Libro </label><br>

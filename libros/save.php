@@ -13,6 +13,14 @@ if (!isset($_POST['id'])) {
 }
 
 $result = mysqli_query($con, $query) or die(mysqli_error($con));
-
+if ($result) {
+    $carpeta= "../img";
+    $ext ="webp";
+    $tmp_name = $_FILES['image']['tmp_name'];
+    $id = $con ->insert_id;
+    $name = $id.".".$ext;
+    // mueve  los archivos
+     move_uploaded_file($tmp_name, "$carpeta/$name");
+}
 
 header("Location: ../index.php");
